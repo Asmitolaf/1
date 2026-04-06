@@ -1,0 +1,26 @@
+name: Тестування геометрії
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Завантажити код
+        uses: actions/checkout@v4
+
+      - name: Встановити Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Встановити залежності
+        run: pip install pytest
+
+      - name: Запустити тести
+        run: pytest test_geometry.py -v
